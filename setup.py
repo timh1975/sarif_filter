@@ -4,8 +4,8 @@ import setuptools
 
 setuptools.setup(
     name="sarif_filter",
-    version="0.0.1",
-    author="0.0.1",
+    version="0.0.2",
+    author="Tim Honisett",
     author_email="tim.honisett@hotmail.co.uk",
     description="Filters out SARIF file results from CodeQL query by ID",
     long_description=pathlib.Path("README.md").read_text(),

@@ -1,12 +1,12 @@
 Metadata-Version: 2.2
 Name: sarif_filter
-Version: 0.0.1
+Version: 0.0.2
 Summary: Filters out SARIF file results from CodeQL query by ID
-Home-page: https://github.com/tiho/sarif_filter
-Author: 0.0.1
+Home-page: https://github.com/timh1975/sarif_filter
+Author: Tim Honisett
 Author-email: tim.honisett@hotmail.co.uk
 License: MIT
-Project-URL: Source, https://github.com/tiho/sarif_filter
+Project-URL: Source, https://github.com/timh1975/sarif_filter
 Classifier: Development Status :: 3 - Alpha
 Classifier: Programming Language :: Python :: 3
 Classifier: Natural Language :: English

@@ -1,10 +1,9 @@
 import pathlib
-
 import setuptools
 
 setuptools.setup(
     name="sarif_filter",
-    version="0.0.4",
+    version="0.0.5",
     author="Tim Honisett",
     author_email="tim.honisett@hotmail.co.uk",
     description="Filters out SARIF file results from CodeQL query by ID",
@@ -23,10 +22,13 @@ setuptools.setup(
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
         "Topic :: Software Development",
-
     ],
     python_requires=">=3.0",
     packages=setuptools.find_packages(),
+    entry_points={
+        "console_scripts": [
+            "sarif_filter=sarif_filter.__main__:main",
+        ]
+    },
     include_package_data=True,
-
 )

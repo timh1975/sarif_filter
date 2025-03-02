@@ -1,1 +1,1 @@
-from sarif_filter.filter import *
+from sarif_filter.filter import filter_file

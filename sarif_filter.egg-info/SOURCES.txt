@@ -1,3 +1,4 @@
+MANIFEST.in
 README.md
 pyproject.toml
 setup.py
@@ -7,3 +8,11 @@ sarif_filter.egg-info/PKG-INFO
 sarif_filter.egg-info/SOURCES.txt
 sarif_filter.egg-info/dependency_links.txt
 sarif_filter.egg-info/top_level.txt
+sarif_filter/dist/sarif_filter-0.0.1-py3-none-any.whl
+sarif_filter/dist/sarif_filter-0.0.1.tar.gz
+sarif_filter/dist/sarif_filter-0.0.2-py3-none-any.whl
+sarif_filter/dist/sarif_filter-0.0.2.tar.gz
+sarif_filter/sarif_filter.egg-info/PKG-INFO
+sarif_filter/sarif_filter.egg-info/SOURCES.txt
+sarif_filter/sarif_filter.egg-info/dependency_links.txt
+sarif_filter/sarif_filter.egg-info/top_level.txt

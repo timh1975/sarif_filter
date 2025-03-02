@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/sarif_filter.iml" filepath="$PROJECT_DIR$/.idea/sarif_filter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PYPI.iml" filepath="$PROJECT_DIR$/.idea/PYPI.iml" />
     </modules>
   </component>
 </project>

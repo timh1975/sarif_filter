@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="sarif_filter",
-    version="0.0.5",
+    version="1.0.2",
     author="Tim Honisett",
     author_email="tim.honisett@hotmail.co.uk",
     description="Filters out SARIF file results from CodeQL query by ID",

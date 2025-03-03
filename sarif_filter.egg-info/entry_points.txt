@@ -1,0 +1,2 @@
+[console_scripts]
+sarif_filter = sarif_filter.__main__:main

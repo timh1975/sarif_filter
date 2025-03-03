@@ -1,42 +1,67 @@
+import datetime
+import sys
 import json
-import os
 
+def filter_file(input_filename, rule):
+    if input_filename is None:
+        print("Error: No file provided!")
+        sys.exit(1)
 
-def filter_file(filename):
-    output_filename = filename + ".html"
-    with open(output_filename, "w") as output:
+    output_filename = input_filename + ".csv"
 
-        try:
-            with open(filename, "r") as f:
-                data = json.load(f)
+    try:
+        # Open the input JSON file
+        with open(input_filename, "r") as file_input:
+            data = json.load(file_input)
 
+        # Open the output CSV file for writing
+        with open(output_filename, "w") as output_file:
+            # Add timestamp and header
+            timestamp = datetime.datetime.now().isoformat()
+            output_file.write(f"Generated on: {timestamp}\n")
+            output_file.write("Name, Rule,Message,Location,Line,Column\n")
+
+            results_found = False
+
+            # Check if 'runs' exists and is a list
             if 'runs' in data and isinstance(data['runs'], list):
                 for run in data['runs']:
                     if 'results' in run and isinstance(run['results'], list):
                         for result in run['results']:
-                            rule_id = result['ruleId']
-                            message = result['message']['text']
-                            location = result['locations'][0]['physicalLocation']['artifactLocation']['uri']
-                            startline = result['locations'][0]['physicalLocation']['region']['startLine']
-                            endcolumn = result['locations'][0]['physicalLocation']['region']['endColumn']
+                            rule_id = result.get('ruleId', 'N/A')
 
-                          #  output.writelines(f"<h3>RuleID: {rule_id}</h3>\n")
-                          #  output.writelines(f"<h3>Message: {message}</h3>\n")
-                          #  output.writelines(f"<h3>Location: {location}</h3>\n")
-                          #  output.writelines(f"<h3>StartLine: {startline}</h3>\n")
-                          #  output.writelines(f"<h3>EndColumn: {endcolumn}</h3>\n")
+                            if rule_id == rule:
+                                name = result.get('name', {}).get('text', 'N/A')
+                                message = result.get('message', {}).get('text', 'N/A')
+                                location = result.get('locations', [{}])[0].get('physicalLocation', {}).get('artifactLocation', {}).get('uri', 'N/A')
+                                region = result.get('locations', [{}])[0].get('physicalLocation', {}).get('region', {})
+                                startline = region.get('startLine', 'N/A')
+                                endcolumn = region.get('endColumn', 'N/A')
 
+                                # Write filtered result to CSV
+                                output_file.write(f"{rule_id},{message},{location},{startline},{endcolumn}\n")
+                                results_found = True
 
+            if not results_found:
+                output_file.write(f"No results found for rule: {rule}\n")
 
-        except FileNotFoundError:
-            print(f"Error: File '{filename}' not found.")
-        except json.JSONDecodeError:
-            print(f"Error: Invalid JSON in '{filename}'.")
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+        print(f"Filtered data saved to {output_filename}")
 
-if __name__ == '__main__':
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)
 
-    filename = os.environ.get("INPUT_FILENAME")
-    print(f"Error: File '{filename}' passed as arguments.")
-    filter_file(filename)
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("Usage: python filter.py <filename> <rule>")
+        sys.exit(1)
+
+    input_filename = sys.argv[1]
+    rule = sys.argv[2]
+
+    if not input_filename:
+        print("Error: Filename is empty or None!")
+        sys.exit(1)
+
+    filter_file(input_filename, rule)
+

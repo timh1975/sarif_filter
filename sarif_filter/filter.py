@@ -19,7 +19,7 @@ def filter_file(input_filename, rule):
             # Add timestamp and header
             timestamp = datetime.datetime.now().isoformat()
             output_file.write(f"Generated on: {timestamp}\n")
-            output_file.write("Name, Rule,Message,Location,Line,Column\n")
+            output_file.write("Rule,Message,Location,Line,Column\n")
 
             results_found = False
 
@@ -31,7 +31,6 @@ def filter_file(input_filename, rule):
                             rule_id = result.get('ruleId', 'N/A')
 
                             if rule_id == rule:
-                                name = result.get('name', {}).get('text', 'N/A')
                                 message = result.get('message', {}).get('text', 'N/A')
                                 location = result.get('locations', [{}])[0].get('physicalLocation', {}).get('artifactLocation', {}).get('uri', 'N/A')
                                 region = result.get('locations', [{}])[0].get('physicalLocation', {}).get('region', {})

@@ -38,7 +38,7 @@ def filter_file(input_filename, rule):
                                 endcolumn = region.get('endColumn', 'N/A')
 
                                 # Write filtered result to CSV
-                                output_file.write(f"{rule_id},{message},{location},{startline},{endcolumn}\n")
+                                output_file.write(f"{name}{rule_id},{message},{location},{startline},{endcolumn}\n")
                                 results_found = True
 
             if not results_found:
